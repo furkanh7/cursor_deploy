@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#000000" />
+    <meta
+      name="description"
+      content="Said Furkan Hilaloğlu - Backend Developer"
+    />
+    <title>furkan</title>
+    <style>
+      /* Logo için özel stil */
+      .favicon {
+        width: 32px;
+        height: 32px;
+        background: linear-gradient(135deg, rgba(79, 70, 229, 0.1) 0%, rgba(16, 185, 129, 0.1) 100%);
+        border-radius: 6px;
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: system-ui, -apple-system, sans-serif;
+        font-weight: 700;
+        color: #F8FAFC;
+        font-size: 16px;
+      }
+      .favicon::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 2px;
+        height: 100%;
+        background: linear-gradient(to bottom, #4F46E5, #10B981);
+      }
+    </style>
+  </head>
+  <body>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <div id="root"></div>
+    <!-- Favicon için canvas element -->
+    <canvas id="favicon" style="display: none;"></canvas>
+    <script>
+      // Favicon oluşturma
+      window.onload = function() {
+        const canvas = document.getElementById('favicon');
+        canvas.width = 32;
+        canvas.height = 32;
+        const ctx = canvas.getContext('2d');
+
+        // Arka plan
+        const gradient = ctx.createLinearGradient(0, 0, 32, 32);
+        gradient.addColorStop(0, 'rgba(79, 70, 229, 0.1)');
+        gradient.addColorStop(1, 'rgba(16, 185, 129, 0.1)');
+        
+        ctx.fillStyle = gradient;
+        ctx.beginPath();
+        ctx.roundRect(0, 0, 32, 32, 6);
+        ctx.fill();
+
+        // Sol çizgi
+        const lineGradient = ctx.createLinearGradient(0, 0, 0, 32);
+        lineGradient.addColorStop(0, '#4F46E5');
+        lineGradient.addColorStop(1, '#10B981');
+        
+        ctx.fillStyle = lineGradient;
+        ctx.fillRect(0, 0, 2, 32);
+
+        // "f" harfi
+        ctx.fillStyle = '#F8FAFC';
+        ctx.font = 'bold 20px system-ui';
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
+        ctx.fillText('f', 16, 16);
+
+        // Favicon'u güncelle
+        const link = document.createElement('link');
+        link.type = 'image/x-icon';
+        link.rel = 'shortcut icon';
+        link.href = canvas.toDataURL("image/x-icon");
+        document.getElementsByTagName('head')[0].appendChild(link);
+      };
+    </script>
+  </body>
+</html>
