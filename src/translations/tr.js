@@ -33,6 +33,8 @@ export const tr = {
     'contact.form.email': 'e-posta adresiniz',
     'contact.form.message': 'mesajınız',
     'contact.form.send': 'şimdi gönder',
+    'contact.form.success': 'Mesajınız başarıyla gönderildi!',
+    'contact.form.error': 'Mesaj gönderilirken bir hata oluştu. Lütfen tekrar deneyin.',
     'contact.info.email': 'furkanhilaloglu9@gmail.com',
     'contact.info.phone': '+90 551 152 62 50',
     'contact.info.linkedin': 'linkedin.com/in/furkanhilaloglu',

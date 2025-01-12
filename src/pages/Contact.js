@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Box, Container, Typography, TextField, Button, Grid, Paper } from '@mui/material';
 import { motion } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
@@ -6,14 +6,22 @@ import EmailIcon from '@mui/icons-material/Email';
 import PhoneIcon from '@mui/icons-material/Phone';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import GitHubIcon from '@mui/icons-material/GitHub';
+import emailjs from '@emailjs/browser';
 
 const Contact = () => {
   const { t } = useTranslation();
+  
+  useEffect(() => {
+    emailjs.init('ipF6aclGp6BxGrKjK');
+  }, []);
+
   const [formData, setFormData] = useState({
     name: '',
     email: '',
     message: ''
   });
+
+  const [loading, setLoading] = useState(false);
 
   const handleChange = (e) => {
     setFormData({
@@ -22,9 +30,30 @@ const Contact = () => {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Form gönderme işlemi burada yapılacak
+    setLoading(true);
+    
+    try {
+      const result = await emailjs.send(
+        'service_d5sr3b1',
+        'template_t2zet8l',
+        {
+          from_name: formData.name,
+          from_email: formData.email,
+          message: formData.message,
+        }
+      );
+      
+      console.log('Email sent successfully:', result.text);
+      setFormData({ name: '', email: '', message: '' });
+      alert(t('contact.form.success'));
+    } catch (error) {
+      console.error('Error sending email:', error);
+      alert(t('contact.form.error'));
+    } finally {
+      setLoading(false);
+    }
   };
 
   const contactInfo = [
@@ -167,6 +196,7 @@ const Contact = () => {
                       type="submit"
                       variant="contained"
                       fullWidth
+                      disabled={loading}
                       sx={{
                         background: 'linear-gradient(135deg, #4F46E5 0%, #10B981 100%)',
                         color: '#fff',
@@ -174,9 +204,13 @@ const Contact = () => {
                         '&:hover': {
                           background: 'linear-gradient(135deg, #4338CA 0%, #059669 100%)',
                         },
+                        '&.Mui-disabled': {
+                          background: 'rgba(255, 255, 255, 0.12)',
+                          color: 'rgba(255, 255, 255, 0.3)',
+                        }
                       }}
                     >
-                      {t('contact.form.send')}
+                      {loading ? 'Gönderiliyor...' : t('contact.form.send')}
                     </Button>
                   </form>
                 </Paper>

@@ -10,13 +10,15 @@ export const en = {
     'home.welcome': 'welcome',
     'home.intro': "i'm furkan",
     'home.title': 'backend developer',
-    'home.description': "i'm a passionate and experienced software developer in backend development. i develop secure, scalable and high-performance web applications using modern technologies and best practices.",
+    'home.description': "i'm a passionate and experienced software developer in backend development. i develop secure, scalable and performant web applications using modern technologies and best practices.",
     'home.about.button': 'about me',
     'home.contact.button': 'get in touch',
     'home.cv.download': 'Download CV',
     'home.subtitle': 'Full Stack Developer',
-    'home.blog.title': 'My Blog Posts',
-    'home.blog.readMore': 'Read More',
+    'home.blog': {
+      'title': 'My Blog Posts',
+      'readMore': 'Read More'
+    },
 
     // About
     'about.education.title': 'education',
@@ -31,6 +33,8 @@ export const en = {
     'contact.form.email': 'your email',
     'contact.form.message': 'your message',
     'contact.form.send': 'send now',
+    'contact.form.success': 'Your message has been sent successfully!',
+    'contact.form.error': 'An error occurred while sending your message. Please try again.',
     'contact.info.email': 'furkanhilaloglu9@gmail.com',
     'contact.info.phone': '+90 551 152 62 50',
     'contact.info.linkedin': 'linkedin.com/in/furkanhilaloglu',
